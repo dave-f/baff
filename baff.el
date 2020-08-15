@@ -2,6 +2,27 @@
 ;;;
 ;;; baff.el --- Create a byte array from a file
 
+;;; Copyright (C) 2020 Dave Footitt
+;;;
+;;; Author: Dave Footitt <dave.footitt@gmail.com>
+;;; URL: http://github.com/dave-f/baff/
+;;; Package-Requires: ((emacs "24.1"))
+;;; Version: 1.0
+;;; Keywords: convenience, usability
+
+;;; This file is not part of GNU Emacs.
+
+;;; License:
+;;; Licensed under the same terms as Emacs.
+
+;;; Commentary:
+;;; Use the following command:
+;;; M-x baff RET filename RET
+;;; This will insert the bytes contained in filename as a byte array,
+;;; into its own buffer, *baff* which can be pasted elsewhere.
+
+;;; Code:
+
 (require 'f)
 
 (defgroup baff nil
