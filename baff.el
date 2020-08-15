@@ -7,11 +7,17 @@
 (defgroup baff nil
   "Make a byte array from a file")
 
-(defcustom baff-header-function '(lambda (arg) (insert "// sha256: " (secure-hash 'sha256 arg) "\n\nstd::array<uint8_t," (number-to-string (length arg)) "> bytes = {\n"))
+(defcustom baff-header-function '(lambda (filename contents)
+                                   (insert "// file   : " filename "\n"
+                                           "// sha256 : "
+                                           (secure-hash 'sha256 contents)
+                                           "\n\nstd::array<uint8_t,"
+                                           (number-to-string (length contents))
+                                           "> bytes = {\n"))
   "Function to run before any bytes are inserted."
   :group 'baff)
 
-(defcustom baff-footer-function '(lambda (arg) (insert "\n};"))
+(defcustom baff-footer-function '(lambda (filename contents) (insert "\n};"))
   "Function to run after all bytes have been inserted."
   :group 'baff)
 
@@ -32,7 +38,7 @@
          (count 0))
     (switch-to-buffer (get-buffer-create "*baff*"))
     (erase-buffer)
-    (funcall baff-header-function unibytes)
+    (funcall baff-header-function arg unibytes)
     (funcall baff-indent-function)
     (cl-loop for i in bytes do
              (setq count (1+ count))
@@ -40,5 +46,5 @@
              (when (= (% count baff-bytes-per-line) 0)
                (insert "\n")
                (funcall baff-indent-function)))
-  (funcall baff-footer-function unibytes))
+  (funcall baff-footer-function arg unibytes))
   t)
