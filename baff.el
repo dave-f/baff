@@ -36,18 +36,22 @@
                                            (number-to-string (length contents))
                                            "> bytes = {\n"))
   "Function to run before any bytes are inserted."
+  :type 'function
   :group 'baff)
 
 (defcustom baff-footer-function '(lambda (filename contents) (insert "\n};"))
   "Function to run after all bytes have been inserted."
+  :type 'function
   :group 'baff)
 
 (defcustom baff-indent-function '(lambda () (insert "    "))
   "Function to indent each line."
+  :type 'function
   :group 'baff)
 
 (defcustom baff-bytes-per-line 16
   "Number of bytes per line before a line break."
+  :type 'integer
   :group 'baff)
 
 (defun baff (arg)
