@@ -1,6 +1,5 @@
-;;; -*- lexical-binding: t; -*-
-;;;
 ;;; baff.el --- Create a byte array from a file
+;;; -*- lexical-binding: t; -*-
 
 ;;; Copyright (C) 2020 Dave Footitt
 ;;;
@@ -26,7 +25,8 @@
 (require 'f)
 
 (defgroup baff nil
-  "Make a byte array from a file")
+  "Make a byte array from a file"
+  :group 'programming)
 
 (defcustom baff-header-function '(lambda (filename contents)
                                    (insert "#include <array>\n\n"
@@ -56,6 +56,7 @@
   :group 'baff)
 
 (defun baff (arg)
+  "Read file `ARG` into a buffer containing a byte array of its contents."
   (interactive "FFile to insert: ")
   (if (not (f-file-p arg))
       (error "File open error"))
@@ -74,3 +75,7 @@
                (funcall baff-indent-function)))
   (funcall baff-footer-function arg unibytes))
   t)
+
+(provide 'baff)
+
+;;; baff.el ends here
