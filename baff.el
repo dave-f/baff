@@ -29,7 +29,8 @@
   "Make a byte array from a file")
 
 (defcustom baff-header-function '(lambda (filename contents)
-                                   (insert "// source : " filename "\n"
+                                   (insert "#include <array>\n\n"
+                                           "// source : " filename "\n"
                                            "// sha256 : "
                                            (secure-hash 'sha256 contents)
                                            "\n\nstd::array<uint8_t,"
