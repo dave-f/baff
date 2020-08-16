@@ -29,7 +29,7 @@
   "Make a byte array from a file")
 
 (defcustom baff-header-function '(lambda (filename contents)
-                                   (insert "// file   : " filename "\n"
+                                   (insert "// source : " filename "\n"
                                            "// sha256 : "
                                            (secure-hash 'sha256 contents)
                                            "\n\nstd::array<uint8_t,"
@@ -63,7 +63,7 @@
     (funcall baff-indent-function)
     (cl-loop for i in bytes do
              (setq count (1+ count))
-             (insert (format "0x%02x" i) (if (= count (length bytes)) "" ","))
+             (insert (format "0x%02x" i) (if (= count (length bytes)) "" ", "))
              (when (= (% count baff-bytes-per-line) 0)
                (insert "\n")
                (funcall baff-indent-function)))
