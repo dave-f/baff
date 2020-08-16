@@ -20,4 +20,4 @@ std::array<uint8_t,10> bytes = {
 };
 ````
 
-The default style is C++ but these can be changed to whatever style is desired via `M-x customize-group RET baff RET`
+The default style is C++ but this can be changed to whatever style is desired via `M-x customize-group RET baff RET`
