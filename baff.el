@@ -12,7 +12,7 @@
 ;;; This file is not part of GNU Emacs.
 
 ;;; License:
-;;; Licensed under the same terms as Emacs.
+;;; SPDX-License-Identifier: GPL-3.0-or-later
 
 ;;; Commentary:
 ;;; Use the following command:
