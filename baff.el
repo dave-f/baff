@@ -5,7 +5,7 @@
 ;;;
 ;;; Author: Dave Footitt <dave.footitt@gmail.com>
 ;;; URL: http://github.com/dave-f/baff/
-;;; Package-Requires: ((emacs "24.1"))
+;;; Package-Requires: ((emacs "24.1") (f "0.20.0"))
 ;;; Version: 1.0
 ;;; Keywords: convenience, usability
 
