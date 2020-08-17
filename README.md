@@ -1,5 +1,5 @@
 # baff
-Create a C++ header containing a byte array generated from a file.
+Create a header containing a byte array generated from a file.
 
 Sometimes it is desirable to generate a byte array from a file for directly including into source code.  `baff` provides this functionality and is invoked thus: 
 
