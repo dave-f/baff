@@ -4,8 +4,8 @@
 ;;; Copyright (C) 2020 Dave Footitt
 ;;;
 ;;; Author: Dave Footitt <dave.footitt@gmail.com>
-;;; URL: http://github.com/dave-f/baff/
-;;; Package-Requires: ((emacs "24.1") (f "0.20.0"))
+;;; URL: https://github.com/dave-f/baff/
+;;; Package-Requires: ((emacs "24.3") (f "0.20.0"))
 ;;; Version: 1.0
 ;;; Keywords: convenience, usability
 
@@ -28,7 +28,7 @@
   "Make a byte array from a file"
   :group 'programming)
 
-(defcustom baff-header-function '(lambda (filename contents)
+(defcustom baff-header-function (lambda (filename contents)
                                    (insert "#include <array>\n\n"
                                            "// source : " filename "\n"
                                            "// sha256 : "
@@ -40,12 +40,12 @@
   :type 'function
   :group 'baff)
 
-(defcustom baff-footer-function '(lambda (filename contents) (insert "\n};"))
+(defcustom baff-footer-function (lambda (filename contents) (insert "\n};"))
   "Function to run after all bytes have been inserted."
   :type 'function
   :group 'baff)
 
-(defcustom baff-indent-function '(lambda () (insert "    "))
+(defcustom baff-indent-function (lambda () (insert "    "))
   "Function to indent each line."
   :type 'function
   :group 'baff)
