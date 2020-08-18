@@ -55,6 +55,11 @@
   :type 'integer
   :group 'baff)
 
+(defcustom baff-large-file 102400
+  "If a file is larger than this value, baff asks for confirmation"
+  :type 'integer
+  :group 'baff)
+
 (defun baff (arg)
   "Read file `ARG` into a buffer containing a byte array of its contents."
   (interactive "FFile to insert: ")
@@ -64,6 +69,9 @@
          (bytes (string-to-list unibytes))
          (count 0)
          (pr (make-progress-reporter "Working" 0 (length bytes))))
+    (when (> (length bytes) baff-large-file)
+      (if (not (y-or-n-p (format "File is large (%d bytes) - insert anyway? " (length bytes))))
+          (error "File considered too large")))
     (switch-to-buffer (get-buffer-create "*baff*"))
     (erase-buffer)
     (funcall baff-header-function arg unibytes)
