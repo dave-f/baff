@@ -56,7 +56,7 @@
   :group 'baff)
 
 (defcustom baff-large-file 102400
-  "If a file is larger than this value, baff asks for confirmation"
+  "If a file is larger than this value, baff asks for confirmation."
   :type 'integer
   :group 'baff)
 
