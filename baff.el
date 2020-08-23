@@ -13,7 +13,7 @@
 ;;; License:
 ;;; SPDX-License-Identifier: GPL-3.0-or-later
 
-;;; Commentary: 
+;;; Commentary:
 
 ;;; Sometimes it is desirable to generate a byte array from a file for
 ;;; directly including into source code.
@@ -27,7 +27,7 @@
 ;;; // sha256 : b2d9aa7ed942cf08d091f3cce3dd56603fef00f5082573cd8b8ad987d29d4351
 ;;;
 ;;; std::array<uint8_t,10> bytes = {
-;;;     0x23, 0x20, 0x62, 0x61, 0x66, 0x66, 0x0d, 0x0a, 0x43, 0x72 
+;;;     0x23, 0x20, 0x62, 0x61, 0x66, 0x66, 0x0d, 0x0a, 0x43, 0x72
 ;;; };
 ;;;
 ;;; This buffer can then be manipulated or saved how you wish.
@@ -55,7 +55,7 @@
   :type 'function
   :group 'baff)
 
-(defcustom baff-footer-function (lambda (filename contents) (insert "\n};"))
+(defcustom baff-footer-function (lambda (filename contents) (ignore filename contents) (insert "\n};"))
   "Function to run after all bytes have been inserted."
   :type 'function
   :group 'baff)
@@ -81,7 +81,7 @@
   (if (not (f-file-p arg))
       (error "File open error"))
   (when (> (f-size arg) baff-large-file)
-    (when (not (y-or-n-p (format "File is large (%d bytes) - insert anyway? " (f-size arg))))
+    (unless (y-or-n-p (format "File is large (%d bytes) - insert anyway? " (f-size arg)))
       (error "File considered too large")))
   (let* ((unibytes (f-read-bytes arg))
          (bytes (string-to-list unibytes))
