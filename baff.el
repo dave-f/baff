@@ -75,6 +75,7 @@
   :type 'integer
   :group 'baff)
 
+;;;###autoload
 (defun baff (arg)
   "Read file `ARG` into a buffer containing a byte array of its contents."
   (interactive "FFile to insert: ")
