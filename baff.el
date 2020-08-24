@@ -95,7 +95,7 @@
     (while (< count (length bytes))
       (insert (format "0x%02x" (nth count bytes)) (if (= count (1- (length bytes))) "" ", "))
       (setq count (1+ count))
-      (when (= (% count baff-bytes-per-line) 0)
+      (when (and (< count (length bytes)) (= (% count baff-bytes-per-line) 0))
         (progress-reporter-update pr count)
         (insert "\n")
         (funcall baff-indent-function)))
